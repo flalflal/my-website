@@ -1,0 +1,254 @@
+:root {
+  --bg: #0b0b0f;
+  --bg-soft: #15151d;
+  --text: #e6e6f0;
+  --muted: #a2a2b3;
+  --accent: #ff375f;
+  --card: #1b1b25;
+  --shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+}
+
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Apple SD Gothic Neo,
+    Pretendard, Arial, sans-serif;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+  background: linear-gradient(180deg, #0b0b0fcc, #0b0b0f00);
+  backdrop-filter: saturate(140%) blur(6px);
+}
+.logo {
+  font-weight: 900;
+  letter-spacing: 0.5px;
+}
+.logo::after {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-left: 6px;
+  background: var(--accent);
+}
+.menu a {
+  color: var(--muted);
+  text-decoration: none;
+  margin-left: 16px;
+  font-weight: 600;
+}
+.menu a:hover {
+  color: var(--text);
+}
+
+.hero {
+  position: relative;
+  height: 52vh;
+  min-height: 340px;
+  display: grid;
+  place-items: end start;
+  background: #111
+    url("https://upload.wikimedia.org/wikipedia/commons/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg")
+    center/cover no-repeat fixed;
+  box-shadow: var(--shadow);
+}
+.hero-overlay {
+  width: 100%;
+  padding: 24px 24px 36px;
+  background: linear-gradient(
+    0deg,
+    rgba(11, 11, 15, 0.85),
+    rgba(11, 11, 15, 0) 60%
+  );
+}
+.hero-title {
+  margin: 0 0 6px;
+  font-size: clamp(24px, 4vw, 44px);
+  font-weight: 900;
+}
+.hero-sub {
+  margin: 0 0 16px;
+  color: var(--muted);
+}
+.btn {
+  appearance: none;
+  border: 1px solid #333;
+  background: var(--bg-soft);
+  color: var(--text);
+  padding: 10px 14px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+.btn:hover {
+  border-color: #555;
+}
+.btn-primary {
+  background: var(--accent);
+  border-color: transparent;
+  color: white;
+  font-weight: 700;
+}
+
+main {
+  padding: 24px 16px 80px;
+}
+.row {
+  margin: 18px 0 28px;
+}
+.row h2 {
+  margin: 0 0 10px 6px;
+  font-size: 20px;
+}
+.scroller {
+  position: relative;
+}
+.track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(180px, 18vw);
+  gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 6px 0 12px;
+  scrollbar-width: none;
+}
+.track::-webkit-scrollbar {
+  display: none;
+}
+
+.card {
+  position: relative;
+  scroll-snap-align: start;
+  background: var(--card);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transform: translateZ(0);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
+}
+.card img {
+  display: block;
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  background: #111;
+}
+.meta {
+  padding: 10px 12px;
+}
+.title {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+.sub {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.arrow {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid #2b2b35;
+  background: rgba(20, 20, 28, 0.7);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  z-index: 2;
+  backdrop-filter: blur(4px);
+}
+.arrow:hover {
+  background: rgba(30, 30, 38, 0.85);
+}
+.arrow.left {
+  left: 0;
+}
+.arrow.right {
+  right: 0;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+}
+.modal[aria-hidden="false"] {
+  display: block;
+}
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+}
+.modal-body {
+  position: absolute;
+  inset: auto;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(100%, 1000px);
+  max-height: 90vh;
+  background: var(--bg-soft);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+}
+.modal-body img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #0d0d12;
+}
+.modal-meta {
+  padding: 18px 18px;
+}
+.modal-meta h2 {
+  margin: 0 0 8px;
+}
+.modal-meta p {
+  color: var(--muted);
+  line-height: 1.5;
+}
+.modal-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  border: none;
+  background: transparent;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .modal-body {
+    grid-template-columns: 1fr;
+  }
+  .track {
+    grid-auto-columns: minmax(180px, 52vw);
+  }
+}
